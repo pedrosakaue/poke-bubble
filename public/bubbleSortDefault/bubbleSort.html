@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="bubble.css" />
+    <title>BubbleSort</title>
+  </head>
+
+  <body>
+    <h2>Método de Ordenação - BubbleSort</h2>
+    <div class="container">
+      <div>
+        <input id="ipt_num" placeholder="Insira um número" />
+      </div>
+      <div>
+        <button onclick="cadastrar()">CADASTRAR</button>
+        <button onclick="bubbleSort()">ORDENAR</button>
+      </div>
+      <div id="divResultado"></div>
+    </div>
+  </body>
+</html>
+<script>
+  var numeros = [];
+
+  function cadastrar() {
+    var numero = Number(ipt_num.value);
+
+    if (!numero || numero < 0 || isNaN(numero)) {
+      alert("Insira um valor válido");
+    } else {
+      if (numeros.includes(numero)) {
+        alert("Não é possível cadastrar o mesmo número duas vezes");
+      } else {
+        numeros.push(Number(numero));
+        ipt_num.value = "";
+      }
+    }
+    mostrarNumeros();
+  }
+
+  function mostrarNumeros() {
+    divResultado.innerHTML = "";
+    for (var i = 0; i < numeros.length; i++) {
+      divResultado.innerHTML += `${numeros[i]} <br>`;
+    }
+  }
+
+  function bubbleSort() {
+    for (var i = 0; i < numeros.length; i++) {
+      for (var j = 0; j < numeros.length - 1 - i; j++) {
+        if (numeros[j] > numeros[j + 1]) {
+          var elemento = numeros[j];
+          numeros[j] = numeros[j + 1];
+          numeros[j + 1] = elemento;
+        }
+      }
+    }
+    mostrarNumeros();
+  }
+</script>
